@@ -1,0 +1,1 @@
+from . import annual_fiscal_receipt_wizard

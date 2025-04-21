@@ -1,0 +1,335 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-21 09:14+0000\n"
+"PO-Revision-Date: 2025-04-21 12:15+0200\n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.6\n"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.actions.report,name:account_invoice_donation_fiscal_receipt.donation_annual_fiscal_receipt
+#: model_terms:ir.ui.view,arch_db:account_invoice_donation_fiscal_receipt.view_annual_fiscal_receipt_wizard_form
+msgid "Annual Fiscal Receipt"
+msgstr "Reçu Fiscal Annuel"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_account_bank_statement_line__is_donation
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_account_move__is_donation
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_account_payment__is_donation
+msgid "Is Donation?"
+msgstr "Est un don ?"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:mail.template,name:account_invoice_donation_fiscal_receipt.email_template_send_fiscal_receipt
+msgid "Donation Fiscal Receipt"
+msgstr "Reçu Fiscal de Don"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.actions.report,print_report_name:account_invoice_donation_fiscal_receipt.donation_fiscal_receipt
+msgid "'Fiscal_Receipt_FR_' +  object.name.replace(' ', '_')"
+msgstr "'Recu_Fiscal_FR_' +  object.name.replace(' ', '_')"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:mail.template,body_html:account_invoice_donation_fiscal_receipt.email_annual_donation_receipt
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"font-size: 13px;\">\n"
+"      Dear\n"
+"      <t t-if=\"object.partner_id.parent_id\">\n"
+"        <t t-out=\"object.partner_id.name or ''\">name</t> (<t t-"
+"out=\"object.partner_id.parent_id.name or ''\">donator company</t>),\n"
+"      </t>\n"
+"      <t t-else=\"\">\n"
+"\t    <t t-out=\"object.partner_id.name or ''\"></t>,\n"
+"\t  </t>\n"
+"      <br><br>\n"
+"      Here is your\n"
+"      <t t-if=\"object.name\">\n"
+"        annual fiscal receipt for your donation for the year  <span "
+"style=\"font-weight:bold;\" t-out=\"ctx.get('year')\">2024</span>\n"
+"      </t>\n"
+"      <t t-else=\"\">annual fiscal receipt</t>\n"
+"      \n"
+"      <br><br>Thank you again for supporting us.\n"
+"      <t t-if=\"not is_html_empty(object.invoice_user_id.signature)\">\n"
+"        <br><br><t t-out=\"object.invoice_user_id.signature or "
+"''\">Signature admin</t>\n"
+"      </t>\n"
+"    </p>\n"
+"</div>\n"
+"\t\t"
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"font-size: 13px;\">\n"
+"      Bonjour\n"
+"      <t t-if=\"object.partner_id.parent_id\">\n"
+"        <t t-out=\"object.partner_id.name or ''\">nom</t> (<t t-"
+"out=\"object.partner_id.parent_id.name or ''\">société donatrice</t>),\n"
+"      </t>\n"
+"      <t t-else=\"\">\n"
+"        <t t-out=\"object.partner_id.name or ''\"></t>,\n"
+"      </t>\n"
+"      <br><br>\n"
+"      Voici votre\n"
+"      <t t-if=\"object.name\">\n"
+"        reçu fiscal annuel pour votre don de l'année <span style=\"font-"
+"weight:bold;\" t-out=\"ctx.get('year')\">2024</span>\n"
+"      </t>\n"
+"      <t t-else=\"\">reçu fiscal annuel</t>\n"
+"      <br><br>Merci encore pour votre soutien.\n"
+"      <t t-if=\"not is_html_empty(object.invoice_user_id.signature)\">\n"
+"        <br><br><t t-out=\"object.invoice_user_id.signature or "
+"''\">Signature</t>\n"
+"      </t>\n"
+"    </p>\n"
+"</div>\n"
+"\t\t"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:mail.template,body_html:account_invoice_donation_fiscal_receipt.email_template_send_fiscal_receipt
+msgid ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"font-size: 13px;\">\n"
+"      Dear\n"
+"      <t t-if=\"object.partner_id.parent_id\">\n"
+"        <t t-out=\"object.partner_id.name or ''\">name</t> (<t t-out=\"object.partner_id.parent_id.name or ''\">donator company</t>),\n"
+"      </t>\n"
+"      <t t-else=\"\">\n"
+"	    <t t-out=\"object.partner_id.name or ''\"/>,\n"
+"	  </t>\n"
+"      <br/><br/>\n"
+"      Here is your\n"
+"      <t t-if=\"object.name\">\n"
+"        fiscal receipt for your donation on <span style=\"font-weight:bold;\" t-out=\"object.invoice_date or ''\">date</span>\n"
+"      </t>\n"
+"      <t t-else=\"\">fiscal receipt</t>\n"
+"      <t t-if=\"object.invoice_origin\">(ref: <t t-out=\"object.invoice_origin or ''\">invoice origin </t>)</t>\n"
+"      amounting to <span style=\"font-weight:bold;\" t-out=\"format_amount(object.amount_total, object.currency_id) or ''\"/> from <t t-out=\"object.company_id.name or ''\">company name</t>\n"
+"      <t t-if=\"object.payment_state in ('paid', 'in_payment')\"> This donation is already paid.</t>\n"
+"      <t t-else=\"\">\n"
+"	     <t t-if=\"object.payment_state == 'partial'\">\n"
+"            This donation has been partially paid, leaving a residual amount of\n"
+"            <span style=\"font-weight:bold;\" t-out=\"format_amount(object.amount_residual, object.currency_id) or ''\"/>.\n"
+"         </t>\n"
+"		 <br/>Please remit payment at your earliest convenience.\n"
+"	  </t>\n"
+"      <t t-if=\"object.payment_reference\">\n"
+"          <br/><br/>Payment ref: <span style=\"font-weight:bold;\" t-out=\"object.payment_reference or ''\"/>.\n"
+"      </t>\n"
+"      <br/><br/>Thank you again for supporting us.\n"
+"      <t t-if=\"not is_html_empty(object.invoice_user_id.signature)\">\n"
+"        <br/><br/><t t-out=\"object.invoice_user_id.signature or ''\">Signature admin</t>\n"
+"      </t>\n"
+"    </p>\n"
+"</div>"
+msgstr ""
+"<div style=\"margin: 0px; padding: 0px;\">\n"
+"    <p style=\"font-size: 13px;\">\n"
+"      Bonjour\n"
+"      <t t-if=\"object.partner_id.parent_id\">\n"
+"        <t t-out=\"object.partner_id.name or ''\">nom</t> (<t t-out=\"object.partner_id.parent_id.name or ''\">société donatrice</t>),\n"
+"      </t>\n"
+"      <t t-else=\"\">\n"
+"        <t t-out=\"object.partner_id.name or ''\"/>,\n"
+"      </t>\n"
+"      <br/><br/>\n"
+"      Veuillez trouver ci-joint votre\n"
+"      <t t-if=\"object.name\">\n"
+"        reçu fiscal pour votre don du <span style=\"font-weight:bold;\" t-out=\"object.invoice_date or ''\">date</span>\n"
+"      </t>\n"
+"      <t t-else=\"\">reçu fiscal</t>\n"
+"      <t t-if=\"object.invoice_origin\">(réf : <t t-out=\"object.invoice_origin or ''\">référence facture</t>)</t>\n"
+"      pour un montant de <span style=\"font-weight:bold;\" t-out=\"format_amount(object.amount_total, object.currency_id) or ''\"/> de la part de <t t-out=\"object.company_id.name or ''\">nom société</t>\n"
+"      <t t-if=\"object.payment_state in ('paid', 'in_payment')\"> Ce don a déjà été réglé.</t>\n"
+"      <t t-else=\"\">\n"
+"	     <t t-if=\"object.payment_state == 'partial'\">\n"
+"            Ce don a été partiellement réglé, il reste un montant dû de\n"
+"            <span style=\"font-weight:bold;\" t-out=\"format_amount(object.amount_residual, object.currency_id) or ''\"/>.\n"
+"         </t>\n"
+"         <br/>Merci de bien vouloir effectuer le paiement dès que possible.\n"
+"      </t>\n"
+"      <t t-if=\"object.payment_reference\">\n"
+"          <br/><br/>Référence de paiement : <span style=\"font-weight:bold;\" t-out=\"object.payment_reference or ''\"/>.\n"
+"      </t>\n"
+"      <br/><br/>Merci encore pour votre soutien.\n"
+"      <t t-if=\"not is_html_empty(object.invoice_user_id.signature)\">\n"
+"        <br/><br/><t t-out=\"object.invoice_user_id.signature or ''\">Signature</t>\n"
+"      </t>\n"
+"    </p>\n"
+"</div>"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:mail.template,name:account_invoice_donation_fiscal_receipt.email_annual_donation_receipt
+msgid "Annual Donation Fiscal Receipt"
+msgstr "Reçu Fiscal Annuel de Don"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model,name:account_invoice_donation_fiscal_receipt.model_report_aidfr_annual_fiscal_receipt
+msgid "Annual Fiscal Receipt Py3o Report"
+msgstr "Rapport Py3o de Reçu Fiscal Annuel"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model,name:account_invoice_donation_fiscal_receipt.model_annual_fiscal_receipt_wizard
+msgid "Annual Fiscal Receipt Wizard"
+msgstr "Assistant de Reçu Fiscal Annuel"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model_terms:ir.ui.view,arch_db:account_invoice_donation_fiscal_receipt.account_move_form_inherit_donation_header
+msgid "Annual Fiscal Report 2"
+msgstr "Reçu Fiscal Annuel 2"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model_terms:ir.ui.view,arch_db:account_invoice_donation_fiscal_receipt.view_annual_fiscal_receipt_wizard_form
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model.fields,help:account_invoice_donation_fiscal_receipt.field_account_bank_statement_line__is_donation
+#: model:ir.model.fields,help:account_invoice_donation_fiscal_receipt.field_account_move__is_donation
+#: model:ir.model.fields,help:account_invoice_donation_fiscal_receipt.field_account_payment__is_donation
+msgid ""
+"Check this box if this invoice is a donation. Used to generate fiscal "
+"receipts."
+msgstr ""
+"Cochez cette case si cette facture est un don. Utilisé pour générer des "
+"reçus fiscaux."
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model,name:account_invoice_donation_fiscal_receipt.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de Configuration"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_annual_fiscal_receipt_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_annual_fiscal_receipt_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_annual_fiscal_receipt_wizard__display_name
+msgid "Display Name"
+msgstr "Nom d'affichage"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_py3o_template__py3o_template_fallback
+msgid "Fallback path"
+msgstr "Chemin de repli"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.actions.report,name:account_invoice_donation_fiscal_receipt.donation_fiscal_receipt
+msgid "Fiscal Receipt"
+msgstr "Reçu Fiscal"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_res_config_settings__donation_fiscal_year
+msgid "Fiscal Year for Annual Donation Reports"
+msgstr "Année Fiscale pour les Reçus Annuels de Dons"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model_terms:ir.ui.view,arch_db:account_invoice_donation_fiscal_receipt.view_res_config_settings_donation_fiscal_year
+msgid "Fiscal year used for generating the annual donation report."
+msgstr "Année fiscale utilisée pour générer le reçu annuel de don."
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.actions.act_window,name:account_invoice_donation_fiscal_receipt.action_annual_fiscal_receipt_wizard
+msgid "Generate Annual Fiscal Receipt"
+msgstr "Générer le Reçu Fiscal Annuel"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model_terms:ir.ui.view,arch_db:account_invoice_donation_fiscal_receipt.view_annual_fiscal_receipt_wizard_form
+msgid "Generate Report"
+msgstr "Générer le rapport"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model,name:account_invoice_donation_fiscal_receipt.model_account_move
+msgid "Journal Entry"
+msgstr "Écriture comptable"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_annual_fiscal_receipt_wizard____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_annual_fiscal_receipt_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_annual_fiscal_receipt_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_annual_fiscal_receipt_wizard__partner_id
+msgid "Partner"
+msgstr "Partenaire"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model,name:account_invoice_donation_fiscal_receipt.model_py3o_template
+msgid "Py3o template"
+msgstr "Modèle Py3o"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:mail.template,description:account_invoice_donation_fiscal_receipt.email_annual_donation_receipt
+msgid "Sent to donators  with their annual fiscal receipt  in attachment"
+msgstr "Envoyé aux donateurs avec leur reçu fiscal annuel en pièce jointe"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:mail.template,description:account_invoice_donation_fiscal_receipt.email_template_send_fiscal_receipt
+msgid "Sent to donators  with their fiscal receipt  in attachment"
+msgstr "Envoyé aux donateurs avec leur reçu fiscal en pièce jointe"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:ir.model.fields,field_description:account_invoice_donation_fiscal_receipt.field_annual_fiscal_receipt_wizard__year
+msgid "Year"
+msgstr "Année"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model_terms:ir.ui.view,arch_db:account_invoice_donation_fiscal_receipt.view_res_config_settings_donation_fiscal_year
+msgid "e.g. 2024"
+msgstr "ex. 2024"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:mail.template,report_name:account_invoice_donation_fiscal_receipt.email_annual_donation_receipt
+msgid ""
+"{{ (object.company_id.name or '').replace('/', '_').replace(' ', '_') }}"
+"_annual_fiscal_receipt_2024"
+msgstr ""
+"{{ (object.company_id.name or '').replace('/', '_').replace(' ', '_') }}"
+"_recu_fiscal_annuel_2024"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:mail.template,subject:account_invoice_donation_fiscal_receipt.email_annual_donation_receipt
+msgid "{{object.company_id.name}} annual fiscal receipt"
+msgstr "Reçu fiscal annuel - {{object.company_id.name}}"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:mail.template,subject:account_invoice_donation_fiscal_receipt.email_template_send_fiscal_receipt
+msgid ""
+"{{object.company_id.name}} fiscal receipt; donation on {{object.invoice_date "
+"or 'n/a'}}"
+msgstr ""
+"Reçu fiscal - {{object.company_id.name}} ; don du {{object.invoice_date or "
+"'n/a'}}"
+
+#. module: account_invoice_donation_fiscal_receipt
+#: model:mail.template,report_name:account_invoice_donation_fiscal_receipt.email_template_send_fiscal_receipt
+msgid ""
+"{{object.company_id.name}}"
+"_fiscal_receipt_{{(object.invoice_date.strftime('%Y-%m-%d') if "
+"object.invoice_date else 'n_a').replace('/', '_')}}"
+msgstr ""
+"{{object.company_id.name}}_recu_fiscal_{{(object.invoice_date.strftime('%Y-"
+"%m-%d') if object.invoice_date else 'n_a').replace('/', '_')}}"

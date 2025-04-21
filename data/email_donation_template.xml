@@ -3,7 +3,7 @@
 <!-- Mail template are declared in a NOUPDATE block
          so users can freely customize/delete them -->
     <!--<field name="email_to">{{object.partner_id.email}}</field>-->
-    <data noupdate="1">
+    <data >
       <!-- Main Email Template -->
       <record id="email_template_send_fiscal_receipt" model="mail.template">
         <field name="name">Donation Fiscal Receipt</field>
@@ -32,14 +32,17 @@
       </t>
       <t t-else="">fiscal receipt</t>
       <t t-if="object.invoice_origin">(ref: <t t-out="object.invoice_origin or ''">invoice origin </t>)</t>
-      amounting to <span style="font-weight:bold;" t-out="format_amount(object.amount_total, object.currency_id) or ''"/>
-      from <t t-out="object.company_id.name or ''">company name</t>
+      amounting to <span style="font-weight:bold;" t-out="format_amount(object.amount_total, object.currency_id) or ''"/> from <t t-out="object.company_id.name or ''">company name</t>
       <t t-if="object.payment_state in ('paid', 'in_payment')"> This donation is already paid.</t>
       <t t-else="">
-        Please remit payment at your earliest convenience.
-        <t t-if="object.payment_reference">
+	     <t t-if="object.payment_state == 'partial'">
+            This donation has been partially paid, leaving a residual amount of
+            <span style="font-weight:bold;" t-out="format_amount(object.amount_residual, object.currency_id) or ''"/>.
+         </t>
+		 <br/>Please remit payment at your earliest convenience.
+	  </t>
+      <t t-if="object.payment_reference">
           <br/><br/>Payment ref: <span style="font-weight:bold;" t-out="object.payment_reference or ''"/>.
-        </t>
       </t>
       <br/><br/>Thank you again for supporting us.
       <t t-if="not is_html_empty(object.invoice_user_id.signature)">
@@ -49,7 +52,7 @@
 </div>
 		</field>
         <field name="report_template" ref="account_invoice_donation_fiscal_receipt.donation_fiscal_receipt"/>
-        <field name="report_name">{{object.company_id.name}}_fiscal_receipt_{{(object.invoice_date or 'n_a').replace('/', '_')}}</field>  
+        <field name="report_name">{{object.company_id.name}}_fiscal_receipt_{{(object.invoice_date.strftime('%Y-%m-%d') if object.invoice_date else 'n_a').replace('/', '_')}}</field>  
 	  </record>
 	  
     </data>

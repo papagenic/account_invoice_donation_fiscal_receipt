@@ -5,17 +5,16 @@
     <field name="model">account.move</field>
     <field name="inherit_id" ref="account.view_move_form"/>
     <field name="arch" type="xml">
-      <!-- Insert our button right after Send & Print
-      <xpath expr="//header/button[@name='action_invoice_sent']" position="after">
-        <button name="print_fiscal_receipt"
-                string="Print Fiscal Receipt"
-                type="object"
-                class="oe_highlight"
-                attrs="{'invisible': [('is_donation', '=', False)]}"/>
-      </xpath>  -->
-	  <xpath expr="//field[@name='payment_reference']" position="after">
-                <field name="is_donation"/>
-      </xpath>
+        <xpath expr="//header/button[@name='action_invoice_sent']" position="after">
+          <button name="action_send_annual_receipt"
+            type="object"
+            string="Annual Fiscal Report 2"
+            class="btn-primary"
+            attrs="{'invisible': [('is_donation', '=', False)]}" />
+        </xpath>
+	    <xpath expr="//field[@name='payment_reference']" position="after">
+              <field name="is_donation"/>
+        </xpath>
     </field>
   </record>
 </odoo>

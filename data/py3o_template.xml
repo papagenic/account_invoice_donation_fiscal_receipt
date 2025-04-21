@@ -1,25 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <!-- Py3o Template Definition -->
-  <record id="py3o_template_fiscal_receipt" model="py3o.template">
-    <field name="name">Fiscal Receipt</field>
-    <!-- This path is relative to the module root -->
-    <field name="py3o_template_fallback">reports/Inv Donation Certificate FR.odt</field>
-    <!-- This sets the filename when downloaded -->
-  </record>
-
-  <!-- Py3o Report Definition -->
-  <record id="donation_fiscal_receipt" model="ir.actions.report">
-    <field name="name">Fiscal Receipt</field>
-	<field name="type">ir.actions.report</field>
-    <field name="model">account.move</field>
-    <field name="report_type">py3o</field>
-    <field name="binding_model_id" ref="account.model_account_move"/> <!-- Needed for visibility -->
-    <field name="binding_type">report</field>
-    <field name="report_name">account_invoice_donation_fiscal_receipt.donation_fiscal_receipt</field>
-    <field name="py3o_template_id" ref="py3o_template_fiscal_receipt"/>
-	<field name="print_report_name">'Fiscal_Receipt_FR_' +  object.name.replace(' ', '_')</field>
-	<field name="py3o_filetype">pdf</field>
-
-  </record>
+      <record id="py3o_template_fiscal_receipt" model="py3o.template">
+        <field name="name">Fiscal Receipt</field>
+        <!-- This path is relative to the module root -->
+        <field name="py3o_template_fallback">reports/Inv Donation Certificate FR.odt</field>
+        <!-- This sets the filename when downloaded -->
+      </record>
+      <record id="py3o_template_annual_fiscal_receipt" model="py3o.template">
+        <field name="name">Annual Fiscal Receipt Template</field>
+        <field name="py3o_template_fallback">reports/annual_fiscal_receipt_template.odt</field>
+      </record>
+      
+      <!-- Py3o fiscal receipt Report Definition -->
+      <record id="donation_fiscal_receipt" model="ir.actions.report">
+        <field name="name">Donation Fiscal Receipt</field>
+	    <field name="type">ir.actions.report</field>
+        <field name="model">account.move</field>
+        <field name="report_type">py3o</field>
+        <field name="binding_model_id" ref="account.model_account_move"/> <!-- Needed for visibility -->
+        <field name="binding_type">report</field>
+        <field name="report_name">account_invoice_donation_fiscal_receipt.donation_fiscal_receipt</field>
+        <field name="py3o_template_id" ref="py3o_template_fiscal_receipt"/>
+	    <field name="print_report_name">'Fiscal_Receipt_FR_' +  object.name.replace(' ', '_')</field>
+	    <field name="py3o_filetype">pdf</field>
+      </record>
+      
+      <!-- Py3o annual fiscal receipt Report Definition -->
+      <record id="donation_annual_fiscal_receipt" model="ir.actions.report">
+        <field name="name">Donation Annual Fiscal Receipt</field>
+        <field name="model">account.move</field>  <!-- or another model if needed -->
+		<field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+        <field name="report_type">py3o</field>
+        <field name="report_name">aidfr.annual_fiscal_receipt</field>
+        <field name="py3o_template_id" ref="py3o_template_annual_fiscal_receipt"/>
+        <field name="py3o_filetype">pdf</field>
+      </record>
 </odoo>

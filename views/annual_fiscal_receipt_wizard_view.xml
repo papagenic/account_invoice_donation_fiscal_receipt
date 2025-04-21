@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Wizard Form View -->
+  <record id="view_annual_fiscal_receipt_wizard_form" model="ir.ui.view">
+    <field name="name">annual.fiscal.receipt.wizard.form</field>
+    <field name="model">annual.fiscal.receipt.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Annual Fiscal Receipt">
+        <group>
+          <field name="year"/>
+        </group>
+        <footer>
+          <button name="generate_report" type="object" string="Generate Report" class="btn-primary"/>
+          <button string="Cancel" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <!-- Wizard Action -->
+  <record id="action_annual_fiscal_receipt_wizard" model="ir.actions.act_window">
+    <field name="name">Generate Annual Fiscal Receipt</field>
+    <field name="res_model">annual.fiscal.receipt.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_annual_fiscal_receipt_wizard_form"/>
+    <field name="target">new</field>
+  </record>
+</odoo>

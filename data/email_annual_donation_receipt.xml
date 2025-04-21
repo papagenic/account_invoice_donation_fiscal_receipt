@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<!-- Mail template are declared in a NOUPDATE block
+         so users can freely customize/delete them -->
+    <!--<field name="email_to">{{object.partner_id.email}}</field>-->
+    <data>
+      <!-- Main Email Template -->
+      <record id="email_annual_donation_receipt" model="mail.template">
+        <field name="name">Annual Donation Fiscal Receipt</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="subject">{{object.company_id.name}} annual fiscal receipt</field>
+        <field name="email_from">{{(object.company_id.email or user.email)}}</field>
+        <field name="partner_to">{{object.partner_id.id }}</field>
+        <field name="description">Sent to donators  with their annual fiscal receipt  in attachment</field>
+        <field name="auto_delete" eval="False"/>
+        <field name="lang">{{object.partner_id.lang}}</field>
+        <field name="body_html" type="html">
+<div style="margin: 0px; padding: 0px;">
+    <p style="font-size: 13px;">
+      Dear
+      <t t-if="object.partner_id.parent_id">
+        <t t-out="object.partner_id.name or ''">name</t> (<t t-out="object.partner_id.parent_id.name or ''">donator company</t>),
+      </t>
+      <t t-else="">
+	    <t t-out="object.partner_id.name or ''"/>,
+	  </t>
+      <br/><br/>
+      Here is your
+      <t t-if="object.name">
+        annual fiscal receipt for your donation for the year  <span style="font-weight:bold;" t-out="ctx.get('year')">2024</span>
+      </t>
+      <t t-else="">annual fiscal receipt</t>
+      
+      <br/><br/>Thank you again for supporting us.
+      <t t-if="not is_html_empty(object.invoice_user_id.signature)">
+        <br/><br/><t t-out="object.invoice_user_id.signature or ''">Signature admin</t>
+      </t>
+    </p>
+</div>
+		</field>
+        <field name="report_template" ref="account_invoice_donation_fiscal_receipt.donation_annual_fiscal_receipt"/>
+        <field name="report_name">{{ (object.company_id.name or '').replace('/', '_').replace(' ', '_') }}_annual_fiscal_receipt_2024</field>	  
+	  </record>
+	  
+    </data>
+</odoo>
